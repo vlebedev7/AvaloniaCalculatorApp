@@ -5,5 +5,20 @@
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="450"
         x:Class="AvaloniaTestApp1.MainWindow"
         Title="AvaloniaTestApp1">
-    
+
+	<StackPanel Orientation="Vertical">
+		<TextBox Text="{Binding MainTextBox}" />
+		<StackPanel Orientation="Horizontal">
+			<Button Content="7" Click="OnClickDigit" />
+            <Button Content="8" Click="OnClickDigit" />
+            <Button Content="9" Click="OnClickDigit" />
+            <Button Content="+" Click="OnClickSign" />
+		</StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="4" Click="OnClickDigit" />
+            <Button Content="5" Click="OnClickDigit" />
+            <Button Content="6" Click="OnClickDigit" />
+            <Button Content="-" Click="OnClickSign" />
+        </StackPanel>
+	</StackPanel>
 </Window>

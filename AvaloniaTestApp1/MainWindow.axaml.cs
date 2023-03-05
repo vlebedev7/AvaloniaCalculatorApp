@@ -35,6 +35,8 @@ namespace AvaloniaTestApp1
 
         public void OnClickDigit(object sender, RoutedEventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(Result))
+                Result = null; // start new calculation
             int digit = int.Parse((sender as Button).Content as string);
 
             if (IsFirstNumber)
@@ -46,6 +48,10 @@ namespace AvaloniaTestApp1
 
         public void OnClickSign(object sender, RoutedEventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(Result))
+                Result = null; // start new calculation
+            if (FirstNumber == 0)
+                return;
             Sign = ((sender as Button).Content as string).Trim()[0];
             IsFirstNumber = false;
             UpdateDataContext();
@@ -69,7 +75,6 @@ namespace AvaloniaTestApp1
             ResetValues();
             UpdateDataContext();
         }
-
 
         private void UpdateDataContext()
         {

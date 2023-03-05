@@ -44,7 +44,7 @@
             <Button Content="*" Click="OnClickSign" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Content="" />
+            <Button Content="." Click="OnClickDecimalPoint" />
             <Button Content="0" Click="OnClickDigit" />
             <Button Content="=" Click="OnClickEquals" />
             <Button Content="/" Click="OnClickSign" />

@@ -5,7 +5,7 @@
         mc:Ignorable="d"
         x:Class="AvaloniaTestApp1.MainWindow"
         Width="240" Height="272"
-        Title="AvaloniaTestApp1">
+        Title="Calc">
 
     <Window.Styles>
         <Style Selector="TextBox#MainTextBox">

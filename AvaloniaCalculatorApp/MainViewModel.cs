@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvaloniaTestApp1
+namespace AvaloniaCalculatorApp
 {
     internal class MainViewModel : ReactiveObject
     {

@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace AvaloniaTestApp1
+namespace AvaloniaCalculatorApp
 {
     internal class Program
     {

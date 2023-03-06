@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis;
 using System.Reflection.PortableExecutable;
 using System.Reactive.Disposables;
 
-namespace AvaloniaTestApp1
+namespace AvaloniaCalculatorApp
 {
     public partial class MainWindow : Window
     {

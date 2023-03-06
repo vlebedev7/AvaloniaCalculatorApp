@@ -98,12 +98,12 @@ namespace AvaloniaCalculatorApp
 
             Result = Sign switch
             {
-                '+' => (firstNumber + secondNumber).ToString(),
-                '-' => (firstNumber - secondNumber).ToString(),
-                '*' => (firstNumber * secondNumber).ToString(),
+                '+' => (firstNumber + secondNumber).Normalize().ToString(),
+                '-' => (firstNumber - secondNumber).Normalize().ToString(),
+                '*' => (firstNumber * secondNumber).Normalize().ToString(),
                 '/' => secondNumber == 0
                     ? "Division by zero error"
-                    : (firstNumber / secondNumber).ToString(),
+                    : (firstNumber / secondNumber).Normalize().ToString(),
                 _ => "No sign",
             };
 

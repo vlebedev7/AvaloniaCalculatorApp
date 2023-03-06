@@ -38,6 +38,7 @@ namespace AvaloniaCalculatorApp
             SecondNumber = "";
             IsFirstNumber = true;
             Sign = (char)0;
+            Result = null;
         }
 
         public void OnClickDigit(object sender, RoutedEventArgs e)
@@ -89,6 +90,26 @@ namespace AvaloniaCalculatorApp
             UpdateDataContext();
         }
 
+        public void OnClickDeleteChar(object sender, RoutedEventArgs e)
+        {
+            static string removeLastChar(string s) => s[0..(s.Length - 1)];
+
+            if (CurrentNumber == "")
+                return;
+
+            if (IsFirstNumber)
+                FirstNumber = removeLastChar(FirstNumber);
+            else
+                SecondNumber = removeLastChar(SecondNumber);
+            UpdateDataContext();
+        }
+
+        public void OnClickClear(object sender, RoutedEventArgs e)
+        {
+            ResetValues();
+            UpdateDataContext();
+        }
+
         public void OnClickEquals(object sender, RoutedEventArgs e)
         {
             if (Sign == 0)
@@ -96,7 +117,7 @@ namespace AvaloniaCalculatorApp
             decimal firstNumber = decimal.Parse(FirstNumber);
             decimal secondNumber = decimal.Parse(SecondNumber);
 
-            Result = Sign switch
+            string result = Sign switch
             {
                 '+' => (firstNumber + secondNumber).Normalize().ToString(),
                 '-' => (firstNumber - secondNumber).Normalize().ToString(),
@@ -108,6 +129,7 @@ namespace AvaloniaCalculatorApp
             };
 
             ResetValues();
+            Result = result;
             UpdateDataContext();
         }
 

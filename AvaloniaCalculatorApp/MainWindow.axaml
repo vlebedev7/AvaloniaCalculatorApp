@@ -8,46 +8,61 @@
         Title="Calc">
 
     <Window.Styles>
-        <Style Selector="TextBox#MainTextBox">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Light"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
         <Style Selector="Button">
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="60"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="FontWeight" Value="Light"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+        <Style Selector="TextBox#MainTextBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
+        <Style Selector=".topRow Button">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#F8911F"/>
+        </Style>
+        <Style Selector=".digitsPanel Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
     </Window.Styles>
-    
-	<StackPanel Orientation="Vertical">
-		<TextBox Name="MainTextBox" IsReadOnly="True" Text="{Binding MainTextBox}" />
-		<StackPanel Orientation="Horizontal">
-			<Button Content="7" Click="OnClickDigit" />
-            <Button Content="8" Click="OnClickDigit" />
-            <Button Content="9" Click="OnClickDigit" />
-            <Button Content="+" Click="OnClickSign" />
-		</StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="4" Click="OnClickDigit" />
-            <Button Content="5" Click="OnClickDigit" />
-            <Button Content="6" Click="OnClickDigit" />
-            <Button Content="-" Click="OnClickSign" />
+
+    <StackPanel Orientation="Vertical">
+        <DockPanel Classes="topRow" Margin="0,0,0,10">
+            <Button DockPanel.Dock="Right" Content="C" Click="OnClickClear" />
+            <Button  DockPanel.Dock="Right" Content="⏴" Click="OnClickDeleteChar" />
+            <TextBox DockPanel.Dock="Left" Name="MainTextBox" IsReadOnly="True" Text="{Binding MainTextBox}" />
+        </DockPanel>
+        <StackPanel Classes="digitsPanel" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="7" Click="OnClickDigit" />
+                <Button Content="8" Click="OnClickDigit" />
+                <Button Content="9" Click="OnClickDigit" />
+                <Button Content="+" Click="OnClickSign" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="4" Click="OnClickDigit" />
+                <Button Content="5" Click="OnClickDigit" />
+                <Button Content="6" Click="OnClickDigit" />
+                <Button Content="-" Click="OnClickSign" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="1" Click="OnClickDigit" />
+                <Button Content="2" Click="OnClickDigit" />
+                <Button Content="3" Click="OnClickDigit" />
+                <Button Content="*" Click="OnClickSign" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="." Click="OnClickDecimalPoint" />
+                <Button Content="0" Click="OnClickDigit" />
+                <Button Content="=" Click="OnClickEquals" />
+                <Button Content="/" Click="OnClickSign" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="1" Click="OnClickDigit" />
-            <Button Content="2" Click="OnClickDigit" />
-            <Button Content="3" Click="OnClickDigit" />
-            <Button Content="*" Click="OnClickSign" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="." Click="OnClickDecimalPoint" />
-            <Button Content="0" Click="OnClickDigit" />
-            <Button Content="=" Click="OnClickEquals" />
-            <Button Content="/" Click="OnClickSign" />
-        </StackPanel>
-	</StackPanel>
+    </StackPanel>
 </Window>

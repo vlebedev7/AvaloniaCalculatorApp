@@ -61,12 +61,8 @@ namespace AvaloniaCalculatorApp
         public void OnClickSign(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(Result))
-            {
-                bool isDecimal = decimal.TryParse(Result, out _);
-                if (isDecimal) // if result is a valid number
-                    FirstNumber = Result; // use result as first number in the new calculation
-                Result = null; // clear result field
-            }
+                MoveResultToFirstNumber();
+
             if (string.IsNullOrWhiteSpace(FirstNumber))
                 return; // don't set sign if first number is not set
             Sign = ((sender as Button).Content as string).Trim()[0];
@@ -76,6 +72,9 @@ namespace AvaloniaCalculatorApp
 
         public void OnClickSignRoot(object sender, RoutedEventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(Result))
+                MoveResultToFirstNumber();
+
             if (Sign != 0)
             {
                 var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandardWindow("Error",
@@ -111,6 +110,9 @@ namespace AvaloniaCalculatorApp
         public void OnClickDeleteChar(object sender, RoutedEventArgs e)
         {
             static string removeLastChar(string s) => s[0..(s.Length - 1)];
+
+            if (!string.IsNullOrWhiteSpace(Result))
+                MoveResultToFirstNumber();
 
             if (CurrentNumber == "")
                 return;
@@ -173,6 +175,17 @@ namespace AvaloniaCalculatorApp
             ResetValues();
             Result = result;
             UpdateDataContext();
+        }
+
+        private void MoveResultToFirstNumber()
+        {
+            if (!string.IsNullOrWhiteSpace(Result))
+            {
+                bool isDecimal = decimal.TryParse(Result, out _);
+                if (isDecimal) // if result is a valid number
+                    FirstNumber = Result; // use result as first number in the new calculation
+                Result = null; // clear result field
+            }
         }
 
         private void UpdateDataContext()

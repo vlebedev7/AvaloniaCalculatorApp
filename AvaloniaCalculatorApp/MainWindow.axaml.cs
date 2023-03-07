@@ -6,6 +6,8 @@ using Avalonia.VisualTree;
 using Microsoft.CodeAnalysis;
 using System.Reflection.PortableExecutable;
 using System.Reactive.Disposables;
+using MessageBox.Avalonia;
+using MessageBox.Avalonia.Enums;
 
 namespace AvaloniaCalculatorApp
 {
@@ -114,19 +116,41 @@ namespace AvaloniaCalculatorApp
         {
             if (Sign == 0)
                 return;
-            decimal firstNumber = decimal.Parse(FirstNumber);
-            decimal secondNumber = decimal.Parse(SecondNumber);
-
-            string result = Sign switch
+            decimal firstNumber, secondNumber;
+            try
             {
-                '+' => (firstNumber + secondNumber).Normalize().ToString(),
-                '-' => (firstNumber - secondNumber).Normalize().ToString(),
-                '*' => (firstNumber * secondNumber).Normalize().ToString(),
-                '/' => secondNumber == 0
-                    ? "Division by zero error"
-                    : (firstNumber / secondNumber).Normalize().ToString(),
-                _ => "No sign",
-            };
+                firstNumber = decimal.Parse(FirstNumber);
+                secondNumber = decimal.Parse(SecondNumber);
+            }
+            catch
+            {
+                var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandardWindow("Error",
+                    "Could not parse one of the numbers", ButtonEnum.Ok, MessageBox.Avalonia.Enums.Icon.Error);
+                messageBoxStandardWindow.Show();
+                return;
+            }
+
+            string result;
+            try
+            {
+                result = Sign switch
+                {
+                    '+' => (firstNumber + secondNumber).Normalize().ToString(),
+                    '-' => (firstNumber - secondNumber).Normalize().ToString(),
+                    '*' => (firstNumber * secondNumber).Normalize().ToString(),
+                    '/' => secondNumber == 0
+                        ? "Division by zero error"
+                        : (firstNumber / secondNumber).Normalize().ToString(),
+                    _ => "No sign",
+                };
+            }
+            catch
+            {
+                var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandardWindow("Error",
+                    "Could not calculate", ButtonEnum.Ok, MessageBox.Avalonia.Enums.Icon.Error);
+                messageBoxStandardWindow.Show();
+                return;
+            }
 
             ResetValues();
             Result = result;

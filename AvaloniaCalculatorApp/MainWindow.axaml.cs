@@ -74,12 +74,28 @@ namespace AvaloniaCalculatorApp
             UpdateDataContext();
         }
 
+        public void OnClickSignRoot(object sender, RoutedEventArgs e)
+        {
+            if (Sign != 0)
+            {
+                var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandardWindow("Error",
+                    "Finish current calculation first", ButtonEnum.Ok, MessageBox.Avalonia.Enums.Icon.Warning);
+                messageBoxStandardWindow.Show();
+                return;
+            }
+            Sign = '√';
+            UpdateDataContext();
+        }
+
         public void OnClickDecimalPoint(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(Result))
                 Result = null; // start new calculation
 
             string currentNumber = CurrentNumber;
+            if (currentNumber.Contains('.'))
+                return;
+
             if (currentNumber == "")
                 currentNumber = "0.";
             else
@@ -116,11 +132,12 @@ namespace AvaloniaCalculatorApp
         {
             if (Sign == 0)
                 return;
-            decimal firstNumber, secondNumber;
+            decimal firstNumber = 0, secondNumber = 0;
             try
             {
                 firstNumber = decimal.Parse(FirstNumber);
-                secondNumber = decimal.Parse(SecondNumber);
+                if (Sign != '√')
+                    secondNumber = decimal.Parse(SecondNumber);
             }
             catch
             {
@@ -141,6 +158,7 @@ namespace AvaloniaCalculatorApp
                     '/' => secondNumber == 0
                         ? "Division by zero error"
                         : (firstNumber / secondNumber).Normalize().ToString(),
+                    '√' => Math.Sqrt((double)firstNumber).ToString(),
                     _ => "No sign",
                 };
             }
@@ -162,11 +180,18 @@ namespace AvaloniaCalculatorApp
             string numberStr = "";
             if (string.IsNullOrWhiteSpace(Result)) // show input values
             {
-                numberStr += FirstNumber;
-                if (Sign != 0)
-                    numberStr += Sign;
-                if (Sign != 0 && SecondNumber != "")
-                    numberStr += SecondNumber;
+                if (Sign == '√')
+                {
+                    numberStr = $"√{FirstNumber}";
+                }
+                else
+                {
+                    numberStr += FirstNumber;
+                    if (Sign != 0)
+                        numberStr += Sign;
+                    if (Sign != 0 && SecondNumber != "")
+                        numberStr += SecondNumber;
+                }
             }
             else // show result
             {

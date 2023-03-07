@@ -34,8 +34,7 @@
 
     <StackPanel Orientation="Vertical">
         <DockPanel Classes="topRow" Margin="0,0,0,10">
-            <Button DockPanel.Dock="Right" Content="C" Click="OnClickClear" />
-            <Button  DockPanel.Dock="Right" Content="⏴" Click="OnClickDeleteChar" />
+            <Button DockPanel.Dock="Right" Content="⏴" Click="OnClickDeleteChar" />
             <TextBox DockPanel.Dock="Left" Name="MainTextBox" IsReadOnly="True" Text="{Binding MainTextBox}" />
         </DockPanel>
         <StackPanel Classes="digitsPanel" Orientation="Vertical">
@@ -44,12 +43,14 @@
                 <Button Content="8" Click="OnClickDigit" />
                 <Button Content="9" Click="OnClickDigit" />
                 <Button Content="+" Click="OnClickSign" />
+                <Button Content="C" Click="OnClickClear" Foreground="#F8911F" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button Content="4" Click="OnClickDigit" />
                 <Button Content="5" Click="OnClickDigit" />
                 <Button Content="6" Click="OnClickDigit" />
                 <Button Content="-" Click="OnClickSign" />
+                <Button Content="√" Click="OnClickSignRoot" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button Content="1" Click="OnClickDigit" />

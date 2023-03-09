@@ -107,6 +107,18 @@ namespace AvaloniaCalculatorApp
             UpdateDataContext();
         }
 
+        public void OnClickNumberPi(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(Result))
+                MoveResultToFirstNumber();
+
+            if (IsFirstNumber)
+                FirstNumber = Math.PI.ToString();
+            else
+                SecondNumber = Math.PI.ToString();
+            UpdateDataContext();
+        }
+
         public void OnClickDeleteChar(object sender, RoutedEventArgs e)
         {
             static string removeLastChar(string s) => s[0..(s.Length - 1)];
@@ -160,6 +172,7 @@ namespace AvaloniaCalculatorApp
                     '/' => secondNumber == 0
                         ? "Division by zero error"
                         : (firstNumber / secondNumber).Normalize().ToString(),
+                    '^' => Math.Pow((double)firstNumber, (double)secondNumber).ToString(),
                     '√' => Math.Sqrt((double)firstNumber).ToString(),
                     _ => "No sign",
                 };

@@ -52,19 +52,21 @@
                 <Button Content="5" Click="OnClickDigit" />
                 <Button Content="6" Click="OnClickDigit" />
                 <Button Content="-" Click="OnClickSign" />
-                <Button Content="√" Click="OnClickSignRoot" />
+                <Button Content="^" Click="OnClickSign" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button Content="1" Click="OnClickDigit" />
                 <Button Content="2" Click="OnClickDigit" />
                 <Button Content="3" Click="OnClickDigit" />
                 <Button Content="*" Click="OnClickSign" />
+                <Button Content="√" Click="OnClickSignRoot" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button Content="." Click="OnClickDecimalPoint" />
                 <Button Content="0" Click="OnClickDigit" />
                 <Button Content="=" Click="OnClickEquals" Foreground="LightGreen" />
                 <Button Content="/" Click="OnClickSign" />
+                <Button Content="π" Click="OnClickNumberPi" />
             </StackPanel>
         </StackPanel>
     </StackPanel>

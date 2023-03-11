@@ -5,6 +5,7 @@
         mc:Ignorable="d"
         x:Class="AvaloniaCalculatorApp.MainWindow"
         SizeToContent="WidthAndHeight"
+        CanResize="False"
         Icon="/Assets/calc.ico"
         Title="Calculator">
 

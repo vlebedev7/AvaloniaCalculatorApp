@@ -7,6 +7,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     <ApplicationIcon>Assets\calc.ico</ApplicationIcon>
+
+    <PublishSingleFile>true</PublishSingleFile>
+    <!--The single published file will have all of the embedded assemblies compressed-->
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <!--Embed the PDB file in the single file too-->
+    <DebugType>embedded</DebugType>
+    <!--Single file publishing doesn't bundle native libraries by default-->
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
   <ItemGroup>
